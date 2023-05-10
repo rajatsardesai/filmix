@@ -13,7 +13,7 @@ export default function MovieList(props) {
                                 <img src={movie.Poster !== "N/A" ? movie.Poster : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"} alt={movie.Title} />
                                 <div className="overlay d-flex justify-content-center align-items-center" onClick={() => props.handleFavouriteClick(movie)}>
                                     {
-                                        movie.imdbID !== props.selectedMovie[index] ?
+                                        props.isMovies ?
                                             <>
                                                 <AddFavourites />
                                             </>
