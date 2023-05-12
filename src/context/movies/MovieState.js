@@ -8,6 +8,7 @@ import RemoveFavourites from '../../components/RemoveFavourites';
 const MovieState = (props) => {
     const API_KEY = process.env.REACT_APP_FILMIX_APP;
     const [movies, setMovies] = useState([]);
+    const [marvelMovies, setMarvelMovies] = useState([]);
     const [disneyMovies, setDisneyMovies] = useState([]);
     const [pixarMovies, setPixarMovies] = useState([]);
     const [potterMovies, setPotterMovies] = useState([]);
@@ -18,11 +19,7 @@ const MovieState = (props) => {
     const getMoviesRequest = async (searchValue, setStates) => {
         try {
             let url = "";
-            if (searchValue) {
-                url = `http://www.omdbapi.com/?s=${searchValue}&apikey=${API_KEY}`;
-            } else {
-                url = `http://www.omdbapi.com/?s=marvel&apikey=${API_KEY}`;
-            }
+            url = `http://www.omdbapi.com/?s=${searchValue}&apikey=${API_KEY}`;
             const response = await axios.get(url);
             if (response.data.Search) {
                 setStates(response.data.Search);
@@ -62,6 +59,7 @@ const MovieState = (props) => {
 
     // Useeffect hook to load movies and get movies stored in localStorage
     useEffect(() => {
+        getMoviesRequest("marvel", setMarvelMovies);
         getMoviesRequest("disney", setDisneyMovies);
         getMoviesRequest("pixar", setPixarMovies);
         getMoviesRequest("potter", setPotterMovies);
@@ -71,7 +69,7 @@ const MovieState = (props) => {
     }, []);
 
     return (
-        <MovieContext.Provider value={{ movies, disneyMovies, pixarMovies, potterMovies, searchValue, setSearchValue, favourites, addFavouriteMovie, removeFavouriteMovie, AddFavourites, RemoveFavourites }}>
+        <MovieContext.Provider value={{ movies, marvelMovies, disneyMovies, pixarMovies, potterMovies, searchValue, setSearchValue, favourites, addFavouriteMovie, removeFavouriteMovie, AddFavourites, RemoveFavourites }}>
             {props.children}
         </MovieContext.Provider>
     )
