@@ -3,6 +3,28 @@ body {
   color: #ffffff !important;
 }
 
+.swiper-button-prev {
+  position: absolute;
+  height: 80%;
+  margin: 81px 0;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+  border: 0;
+}
+
+.swiper-button-next {
+  position: absolute;
+  height: 80%;
+  margin: 81px 0;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+  border: 0;
+}
+
 .movie-app>.row {
   overflow-x: auto;
   overflow-y: hidden;
@@ -15,6 +37,7 @@ body {
 }
 
 .image-container {
+  max-width: 318px !important;
   position: relative;
   top: 0;
   transition: transform 0.2s;
@@ -22,7 +45,9 @@ body {
 }
 
 .image-container:hover .overlay {
-  opacity: 1;
+  @media screen and (min-width:1200px) {
+    opacity: 1;
+  }
 }
 
 .image-container:hover {
@@ -30,14 +55,22 @@ body {
   transform: scale(1.1);
 }
 
+.image-container>img {
+  max-width: 318px;
+}
+
 .overlay {
   position: absolute;
   background: rgba(0, 0, 0, 0.8);
   width: 100%;
   transition: 0.5s ease;
-  opacity: 0;
+  opacity: 1;
   bottom: 0;
   font-size: 20px;
   padding: 20px;
   text-align: center;
+
+  @media screen and (min-width:1200px) {
+    opacity: 0;
+  }
 }
