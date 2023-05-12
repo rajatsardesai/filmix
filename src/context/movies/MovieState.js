@@ -14,8 +14,8 @@ const MovieState = (props) => {
     const [searchValue, setSearchValue] = useState("");
     const [favourites, setFavourites] = useState([]);
 
-    // Search Movies using OMDB API
-    const searchMoviesRequest = async (searchValue) => {
+    // Get Movies using OMDB API
+    const getMoviesRequest = async (searchValue, setStates) => {
         try {
             let url = "";
             if (searchValue) {
@@ -25,53 +25,11 @@ const MovieState = (props) => {
             }
             const response = await axios.get(url);
             if (response.data.Search) {
-                setMovies(response.data.Search);
+                setStates(response.data.Search);
             }
         } catch (error) {
             console.log('Internal server error', error);
-            setMovies(["No data found"]);
-        }
-    };
-
-    // Get Disney Movies using OMDB API
-    const disneyMoviesRequest = async () => {
-        try {
-            const url = `http://www.omdbapi.com/?s=disney&apikey=${API_KEY}`;
-            const response = await axios.get(url);
-            if (response.data.Search) {
-                setDisneyMovies(response.data.Search);
-            }
-        } catch (error) {
-            console.log('Internal server error', error);
-            setDisneyMovies(["No data found"]);
-        }
-    };
-
-    // Get Pixar Movies using OMDB API
-    const pixarMoviesRequest = async () => {
-        try {
-            const url = `http://www.omdbapi.com/?s=pixar&apikey=${API_KEY}`;
-            const response = await axios.get(url);
-            if (response.data.Search) {
-                setPixarMovies(response.data.Search);
-            }
-        } catch (error) {
-            console.log('Internal server error', error);
-            setPixarMovies(["No data found"]);
-        }
-    };
-
-    // Get Harry Potter Movies using OMDB API
-    const potterMoviesRequest = async () => {
-        try {
-            const url = `http://www.omdbapi.com/?s=potter&apikey=${API_KEY}`;
-            const response = await axios.get(url);
-            if (response.data.Search) {
-                setPotterMovies(response.data.Search);
-            }
-        } catch (error) {
-            console.log('Internal server error', error);
-            setPotterMovies(["No data found"]);
+            setStates(["No data found"]);
         }
     };
 
@@ -98,16 +56,18 @@ const MovieState = (props) => {
 
     // Useeffect hook to trigger once search input triggers
     useEffect(() => {
-        searchMoviesRequest(searchValue);
+        getMoviesRequest(searchValue, setMovies);
+        // eslint-disable-next-line
     }, [searchValue]);
-    
+
     // Useeffect hook to load movies and get movies stored in localStorage
     useEffect(() => {
-        disneyMoviesRequest();
-        pixarMoviesRequest();
-        potterMoviesRequest();
+        getMoviesRequest("disney", setDisneyMovies);
+        getMoviesRequest("pixar", setPixarMovies);
+        getMoviesRequest("potter", setPotterMovies);
         const movieFavourites = JSON.parse(localStorage.getItem("filmix-favourite-movies"));
         movieFavourites && setFavourites(movieFavourites);
+        // eslint-disable-next-line
     }, []);
 
     return (
