@@ -5,7 +5,7 @@ import movieContext from '../context/movies/movieContext';
 
 const Home = () => {
     const contexts = useContext(movieContext);
-    const { movies, disneyMovies, pixarMovies, potterMovies, searchValue, setSearchValue, favourites } = contexts;
+    const { movies, marvelMovies, disneyMovies, pixarMovies, potterMovies, searchValue, setSearchValue, favourites } = contexts;
     return (
         <>
             <main>
@@ -13,8 +13,13 @@ const Home = () => {
                     <Navbar heading="Flimix" searchValue={searchValue} setSearchValue={setSearchValue} />
                 </header>
 
+                {/* Search movie section */}
+                {
+                    (searchValue && movies.length > 0) ? <MovieSection movies={movies} heading="Marvel" isSearch={true} /> : null
+                }
+
                 {/* Marvel movie section */}
-                <MovieSection movies={movies} heading="Marvel" />
+                <MovieSection movies={marvelMovies} heading="Marvel" />
 
                 {/* Disney movie section */}
                 <MovieSection movies={disneyMovies} heading="Disney" />
@@ -26,7 +31,9 @@ const Home = () => {
                 <MovieSection movies={potterMovies} heading="Harry Potter" />
 
                 {/* Favourites movie section */}
-                <MovieSection movies={favourites} heading="Favourites" isFavourites={true} />
+                {
+                    favourites.length>0 && <MovieSection movies={favourites} heading="Favourites" isFavourites={true} />
+                }
             </main>
         </>
     )

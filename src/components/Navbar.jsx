@@ -11,7 +11,7 @@ export default function Navbar(props) {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                        <form className="d-flex">
+                        <form className="d-flex my-3 my-lg-0">
                             <input className="form-control me-2" type="search" placeholder="Search" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} aria-label="Search" />
                         </form>
                     </div>
