@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/filmix/static/css/main.cab18fee.css",
-    "main.js": "/filmix/static/js/main.1d98ba09.js",
+    "main.js": "/filmix/static/js/main.dca76272.js",
     "static/js/787.187a1a98.chunk.js": "/filmix/static/js/787.187a1a98.chunk.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/filmix/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "/filmix/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
@@ -10,11 +10,11 @@
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "/filmix/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
     "index.html": "/filmix/index.html",
     "main.cab18fee.css.map": "/filmix/static/css/main.cab18fee.css.map",
-    "main.1d98ba09.js.map": "/filmix/static/js/main.1d98ba09.js.map",
+    "main.dca76272.js.map": "/filmix/static/js/main.dca76272.js.map",
     "787.187a1a98.chunk.js.map": "/filmix/static/js/787.187a1a98.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cab18fee.css",
-    "static/js/main.1d98ba09.js"
+    "static/js/main.dca76272.js"
   ]
 }
